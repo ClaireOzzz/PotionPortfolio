@@ -1,40 +1,64 @@
 import { Float, OrbitControls } from "@react-three/drei";
 import { useThree, useLoader } from "@react-three/fiber";
-import {useRef} from "react";
+import {useRef, useState} from "react";
 import { Perf } from 'r3f-perf'
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader"
 import {Ocean} from "./Ocean"
 import Underlay from "./Underlay"
+import { useSpring, animated, easings, config } from '@react-spring/three'
+
 
 export default function App()
 {
-    const sphere = useRef()
-    const cube = useRef()
+    const [spin, setSpin] = useState(false);
+    const myMesh = useRef()
 
-    const model = useLoader(GLTFLoader, "./ironCauldron3.glb")
-    // const { viewport } = useThree()
+    const model = useLoader(GLTFLoader, "./cauldron.glb")
+    
     const viewport = useThree(state => state.viewport)
-    console.log("viewport.width", viewport.width)
+    // console.log("viewport.width", viewport.width)
 
-    return <>
-        <Underlay />
+    const { rotationAngle } = useSpring({ rotationAngle: spin ? 2*Math.PI : 1,  config: {
+        // mass: 1,
+        // friction: 5,
+        easing: easings.easeInBounce,
+      },})
+
+    return (
+        <>
         <Perf position="top-left" />
         <OrbitControls makeDefault />
+        <Underlay spin={spin} setSpin={setSpin}
+         />
 
-        <directionalLight position={ [ 1, 2, 3 ] } intensity={ 5.5 } />
-        <ambientLight intensity={ 10.5 } />
-       
+        {/* LIGHTS     */}
+        <directionalLight position={[1, 0, 3]} color={'grey'} intensity={15} />
+        <ambientLight color={'grey'} intensity={10.5} />
 
         <Float
-        // rotationIntensity={0.2}
-        floatIntensity={1} // Up/down float intensity, works like a multiplier with floatingRange,defaults to 1
-        floatingRange={[-0.2, 0.2]}
+            rotationIntensity={0.2}
+            floatIntensity={1}
+            floatingRange={[-0.2, 0.2]}
         >
-        <primitive object={model.scene} rotation={[Math.PI*0.1,0,0]} position={[0,-3.4,0]} 
-        scale={viewport.width < 10.5 ? 1.3 : (viewport.width > 15 ? 2 : viewport.width / 8)}
-        />     
-        {/* <Ocean />  */}
+            <animated.primitive
+            ref={myMesh}
+            //onClick={() => setActive(!active)}
+            object={model.scene}
+
+            rotation-x={Math.PI*0.1}
+            rotation-y={rotationAngle}
+
+            position={[0, -3.4, 0]}
+            scale={
+                viewport.width < 10.5
+                ? 1.3
+                : viewport.width > 15
+                ? 2
+                : viewport.width / 8
+            }
+            />
         </Float>
-      
-    </>
+       
+        </>
+    );
 }
