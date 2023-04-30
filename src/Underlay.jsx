@@ -24,7 +24,6 @@ export default function Underlay({spin, setSpin}) {
 
   const texture2 = useLoader(THREE.TextureLoader, "./name.png");
 
-
   return (
     <>
       <Image
@@ -51,7 +50,7 @@ export default function Underlay({spin, setSpin}) {
         <meshBasicMaterial map={texture2} transparent />
       </mesh>
 
-       {/* ABOUT ME BUTTON */}
+       {/* SKILLS BUTTON */}
       <mesh
         position={[-4, -3, 0]}
         onClick={() => setSpin(!spin)}
@@ -61,7 +60,7 @@ export default function Underlay({spin, setSpin}) {
         <meshBasicMaterial map={texture2} transparent />
       </mesh>
 
-      {/* ABOUT ME BUTTON */}
+      {/* PROJECTS BUTTON */}
       <mesh
         position={[4, 0, 0]}
         onClick={() => setSpin(!spin)}
@@ -71,7 +70,7 @@ export default function Underlay({spin, setSpin}) {
         <meshBasicMaterial map={texture2} transparent />
       </mesh>
 
-       {/* ABOUT ME BUTTON */}
+       {/* RESUME BUTTON */}
       <mesh
         position={[4, -3, 0]}
         onClick={() => setSpin(!spin)}

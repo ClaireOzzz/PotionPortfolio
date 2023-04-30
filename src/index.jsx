@@ -1,8 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import './style.css'
+import './style.scss'
 import { Canvas } from '@react-three/fiber'
 import App from './App.jsx'
+import Flies from './Fireflies.jsx'
 
 const created =({ scene }) => {
   console.log("whr tf is it", scene)
@@ -12,7 +13,8 @@ const created =({ scene }) => {
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
- 
+  
+
   <Canvas shadows
         background={ null }
         camera={ {
@@ -25,7 +27,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     >
         <App />
     </Canvas>
-   
+    <Flies />
+  
   </React.StrictMode>
 
 )

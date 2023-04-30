@@ -7,9 +7,9 @@ import {Ocean} from "./Ocean"
 import Underlay from "./Underlay"
 import { useSpring, animated, easings, config } from '@react-spring/three'
 
-
 export default function App()
 {
+
     const [spin, setSpin] = useState(false);
     const myMesh = useRef()
 
@@ -18,6 +18,7 @@ export default function App()
     const viewport = useThree(state => state.viewport)
     // console.log("viewport.width", viewport.width)
 
+    // SPIN ANIMATION : ABOUT ME BUTTON
     const { rotationAngle } = useSpring({ rotationAngle: spin ? 2*Math.PI : 1,  config: {
         // mass: 1,
         // friction: 5,
@@ -42,7 +43,6 @@ export default function App()
         >
             <animated.primitive
             ref={myMesh}
-            //onClick={() => setActive(!active)}
             object={model.scene}
 
             rotation-x={Math.PI*0.1}
