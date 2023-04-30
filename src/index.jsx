@@ -4,6 +4,7 @@ import './style.scss'
 import { Canvas } from '@react-three/fiber'
 import App from './App.jsx'
 import Flies from './Fireflies.jsx'
+import Portal from './Portal.jsx'
 
 const created =({ scene }) => {
   console.log("whr tf is it", scene)
@@ -27,8 +28,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     >
         <App />
     </Canvas>
-    <Flies />
-  
+    {/* <Flies /> */}
+    <Portal/>
   </React.StrictMode>
 
 )
