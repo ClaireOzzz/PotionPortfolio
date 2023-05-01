@@ -30,7 +30,7 @@ export default function Underlay({spin, setSpin}) {
         ref={ref}
         url="./name.png"
         transparent={true}
-        position={[0, viewport.height / 100, 0]}
+        position={[0, viewport.height / 100, -1]}
         scale={
           viewport.width < 10.5
             ? 6
@@ -42,7 +42,7 @@ export default function Underlay({spin, setSpin}) {
 
       {/* ABOUT ME BUTTON */}
       <mesh
-        position={[-4, 0, 0]}
+        position={[-4, 0, -1]}
         onClick={() => setSpin(!spin)}
         scale={[2, 1, 1]}
       >

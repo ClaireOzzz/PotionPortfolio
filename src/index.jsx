@@ -31,7 +31,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     </Canvas>
     {/* <Flies /> */}
     {/* <Portal/> */}
-    <Card />
+    {/* <Card /> */}
   </React.StrictMode>
 
 )

@@ -1,4 +1,4 @@
-import { Float, OrbitControls } from "@react-three/drei";
+import { Float, OrbitControls, Environment } from "@react-three/drei";
 import { useThree, useLoader } from "@react-three/fiber";
 import {useRef, useState} from "react";
 import { Perf } from 'r3f-perf'
@@ -6,6 +6,7 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader"
 import {Ocean} from "./Ocean"
 import Underlay from "./Underlay"
 import { useSpring, animated, easings, config } from '@react-spring/three'
+import Blob from "./Blob";
 
 export default function App()
 {
@@ -16,7 +17,7 @@ export default function App()
     const model = useLoader(GLTFLoader, "./cauldron.glb")
     
     const viewport = useThree(state => state.viewport)
-    // console.log("viewport.width", viewport.width)
+   console.log("viewport.width", viewport.width)
 
     // SPIN ANIMATION : ABOUT ME BUTTON
     const { rotationAngle } = useSpring({ rotationAngle: spin ? 2*Math.PI : 1,  config: {
@@ -27,6 +28,8 @@ export default function App()
 
     return (
         <>
+        <Environment preset="warehouse" blur={1} />
+
         <Perf position="top-left" />
         <OrbitControls makeDefault />
         <Underlay spin={spin} setSpin={setSpin}
@@ -48,18 +51,18 @@ export default function App()
             rotation-x={Math.PI*0.1}
             rotation-y={rotationAngle}
 
-            position={[0, -3.4, 0]}
+            position={[0, -3.4, -1]}
             scale={
-                viewport.width < 10.5
-                ? 1.3
+                viewport.width < 11.5
+                ? 1.7
                 : viewport.width > 15
-                ? 2
-                : viewport.width / 8
+                ? 2.2
+                : viewport.width / 7
             }
             />
             
         </Float>
-       
+       <Blob />
         </>
     );
 }

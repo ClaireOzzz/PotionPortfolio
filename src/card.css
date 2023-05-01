@@ -148,6 +148,7 @@ Font for letters is Bree Serif (google fonts)
       width:14%;
       height:27%;
       top:4%;
+      bottom:4%;
       left:4%;
   }
   .back:before {
@@ -175,5 +176,5 @@ Font for letters is Bree Serif (google fonts)
       height:27%;
       bottom:4%;
       right:4%;
-      transform:rotate(180deg);
+      /* transform:rotate(180deg); */
   }
