@@ -4,8 +4,8 @@
 // import perlin3 from './perlin'
 // import { Sphere } from "three";
 
-import React, { Suspense, useRef } from "react";
-import { Canvas, useThree } from "@react-three/fiber";
+import React, { useRef } from "react";
+import {  useThree } from "@react-three/fiber";
 import { Sphere } from "@react-three/drei";
 import { RectAreaLightUniformsLib } from "three/examples/jsm/lights/RectAreaLightUniformsLib";
 import { DistortTorusMaterial } from "./DistortTorusMaterial";
@@ -14,17 +14,18 @@ RectAreaLightUniformsLib.init();
 
 export default function Blob() { 
   const ref = useRef();
-  const RADIUS = 1;
   const { size } = useThree();
+
+
   return (
     <>
-      <Sphere ref={ref} args={[RADIUS, 500, 100]}>
+      <Sphere ref={ref} args={[1, 500, 100]} position={[0,0,-1]} >
         <DistortTorusMaterial
           color="white"
           metalness={0.1}
           roughness={1}
           clearcoat={0.1}
-          radius={RADIUS}
+          radius={1}
           resolution={[size.width, size.height]}
         />
       </Sphere>

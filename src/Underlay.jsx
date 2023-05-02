@@ -6,9 +6,8 @@ import { TextureLoader } from 'three'
 import * as THREE from 'three'
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader"
 
-export default function Underlay({spin, setSpin}) {
+export default function Underlay({spin, setSpin, splat, setSplat}) {
   const ref = useRef();
-
   
   useFrame(() => {
     ref.current.material.zoom = 1.2;
@@ -30,7 +29,7 @@ export default function Underlay({spin, setSpin}) {
         ref={ref}
         url="./name.png"
         transparent={true}
-        position={[0, viewport.height / 100, -1]}
+        position={[0, viewport.height / 100, -2]}
         scale={
           viewport.width < 10.5
             ? 6
@@ -53,7 +52,7 @@ export default function Underlay({spin, setSpin}) {
        {/* SKILLS BUTTON */}
       <mesh
         position={[-4, -3, 0]}
-        onClick={() => setSpin(!spin)}
+        onClick={() => setSplat(!splat)}
         scale={[2, 1, 1]}
       >
         <planeGeometry />

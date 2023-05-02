@@ -1,6 +1,6 @@
-import { Float, OrbitControls, Environment } from "@react-three/drei";
+import { Float, OrbitControls, Environment, Sphere } from "@react-three/drei";
 import { useThree, useLoader } from "@react-three/fiber";
-import {useRef, useState} from "react";
+import React, {useRef, useState} from "react";
 import { Perf } from 'r3f-perf'
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader"
 import {Ocean} from "./Ocean"
@@ -8,23 +8,35 @@ import Underlay from "./Underlay"
 import { useSpring, animated, easings, config } from '@react-spring/three'
 import Blob from "./Blob";
 
+
 export default function App()
 {
-
     const [spin, setSpin] = useState(false);
+    const [splat, setSplat] = useState(false);
     const myMesh = useRef()
-
+  
+    const ref = useRef();
+    const { size } = useThree();
+  
     const model = useLoader(GLTFLoader, "./cauldron.glb")
     
     const viewport = useThree(state => state.viewport)
-   console.log("viewport.width", viewport.width)
+   //console.log("viewport.width", viewport.width)
 
-    // SPIN ANIMATION : ABOUT ME BUTTON
+    //SPIN ANIMATION : ABOUT ME BUTTON
     const { rotationAngle } = useSpring({ rotationAngle: spin ? 2*Math.PI : 1,  config: {
         // mass: 1,
         // friction: 5,
         easing: easings.easeInBounce,
       },})
+
+    const { positioned } = useSpring({ positioned: splat ? 1.5 : -1.8 ,  config: {
+        duration: 3000,
+        //mass: 2,
+        friction: 5,
+       // easing: easings.easeInBounce,
+      },})
+   
 
     return (
         <>
@@ -32,7 +44,9 @@ export default function App()
 
         <Perf position="top-left" />
         <OrbitControls makeDefault />
-        <Underlay spin={spin} setSpin={setSpin}
+        <Underlay 
+        spin={spin} setSpin={setSpin} 
+        splat={splat} setSplat={setSplat}
          />
 
         {/* LIGHTS     */}
@@ -62,7 +76,10 @@ export default function App()
             />
             
         </Float>
-       <Blob />
+
+        <animated.mesh position-y={positioned}>
+            <Blob/>
+        </animated.mesh>
         </>
     );
 }
