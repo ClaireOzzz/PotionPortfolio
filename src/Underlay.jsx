@@ -9,23 +9,23 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader"
 export default function Underlay({spin, setSpin, splat, setSplat}) {
   const ref = useRef();
   
-  useFrame(() => {
-    ref.current.material.zoom = 1.2;
-    ref.current.material.grayscale = 0;
-  });
+  // useFrame(() => {
+  //   ref.current.material.zoom = 1.2;
+  //   ref.current.material.grayscale = 0;
+  // });
 
   const viewport = useThree((state) => state.viewport);
   const { scene } = useThree();
 
-  const texture = useLoader(TextureLoader, "./purp.jpg");
-  texture.encoding = THREE.sRGBEncoding;
-  scene.background = texture;
+  // const texture = useLoader(TextureLoader, "./purp.jpg");
+  // texture.encoding = THREE.sRGBEncoding;
+  // scene.background = texture;
 
   const texture2 = useLoader(THREE.TextureLoader, "./name.png");
 
   return (
     <>
-      <Image
+      {/* <Image
         ref={ref}
         url="./name.png"
         transparent={true}
@@ -37,7 +37,7 @@ export default function Underlay({spin, setSpin, splat, setSplat}) {
             ? 8
             : viewport.width / 1.9
         }
-      />
+      /> */}
 
       {/* ABOUT ME BUTTON */}
       <mesh

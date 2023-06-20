@@ -1,11 +1,13 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import './style.scss'
+import './style.css'
 import { Canvas } from '@react-three/fiber'
 import App from './App.jsx'
-import Flies from './Fireflies.jsx'
 import Portal from './Portal.jsx'
 import Card from './Card.jsx'
+import Background from './Background.jsx'
+import Lettering from './Lettering'
+import ReactCurvedText from "react-curved-text";
 
 const created =({ scene }) => {
   console.log("whr tf is it", scene)
@@ -15,9 +17,10 @@ const created =({ scene }) => {
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-  
 
-  <Canvas shadows
+  {/* <Background /> */}
+
+  {/* <Canvas shadows
         background={ null }
         camera={ {
             fov: 45,
@@ -28,10 +31,29 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         onCreated={ created }
     >
         <App />
-    </Canvas>
+    </Canvas> */}
+
     {/* <Flies /> */}
     {/* <Portal/> */}
     {/* <Card /> */}
+    {/* <Lettering /> */}
+    <div className="logo-container">
+        {/* <span >AAAAAAAAAA</span> */}
+        <ReactCurvedText
+            width={300}
+            height={300}
+            cx={150}
+            cy={150}
+            rx={100}
+            ry={100}
+            startOffset={50}
+            reversed={false}
+            text="react-curved-text"
+            textProps={{ style: { fontSize: 24 } }}
+           
+        />
+    </div>
+    
   </React.StrictMode>
 
 )

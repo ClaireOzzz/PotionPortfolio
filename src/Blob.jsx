@@ -6,7 +6,7 @@
 
 import React, { useRef } from "react";
 import {  useThree } from "@react-three/fiber";
-import { Sphere } from "@react-three/drei";
+import { Sphere, TorusKnot } from "@react-three/drei";
 import { RectAreaLightUniformsLib } from "three/examples/jsm/lights/RectAreaLightUniformsLib";
 import { DistortTorusMaterial } from "./DistortTorusMaterial";
 
@@ -19,7 +19,7 @@ export default function Blob() {
 
   return (
     <>
-      <Sphere ref={ref} args={[1, 500, 100]} position={[0,0,-1]} >
+      <Sphere ref={ref} args={[1, 600, 100]} position={[0,0,-1]} >
         <DistortTorusMaterial
           color="white"
           metalness={0.1}

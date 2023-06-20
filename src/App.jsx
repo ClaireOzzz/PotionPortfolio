@@ -7,7 +7,7 @@ import {Ocean} from "./Ocean"
 import Underlay from "./Underlay"
 import { useSpring, animated, easings, config } from '@react-spring/three'
 import Blob from "./Blob";
-
+import Tendrils from "./Tendrils";
 
 export default function App()
 {
@@ -21,20 +21,16 @@ export default function App()
     const model = useLoader(GLTFLoader, "./cauldron.glb")
     
     const viewport = useThree(state => state.viewport)
-   //console.log("viewport.width", viewport.width)
+    //console.log("viewport.width", viewport.width)
 
     //SPIN ANIMATION : ABOUT ME BUTTON
     const { rotationAngle } = useSpring({ rotationAngle: spin ? 2*Math.PI : 1,  config: {
-        // mass: 1,
-        // friction: 5,
         easing: easings.easeInBounce,
       },})
 
-    const { positioned } = useSpring({ positioned: splat ? 1.5 : -1.8 ,  config: {
+    const { positioned } = useSpring({ positioned: splat ? 1.5 : -1 ,  config: {
         duration: 3000,
-        //mass: 2,
-        friction: 5,
-       // easing: easings.easeInBounce,
+        friction: 5
       },})
    
 
@@ -62,24 +58,28 @@ export default function App()
             ref={myMesh}
             object={model.scene}
 
-            rotation-x={Math.PI*0.1}
+            rotation-x={Math.PI*0.15}
             rotation-y={rotationAngle}
 
-            position={[0, -3.4, -1]}
+            position={[0, -1.2, -1]}
             scale={
-                viewport.width < 11.5
-                ? 1.7
+                viewport.width < 5
+                ? 1.0
                 : viewport.width > 15
-                ? 2.2
-                : viewport.width / 7
+                ? 2
+                : viewport.width / 10
             }
             />
             
         </Float>
 
-        <animated.mesh position-y={positioned}>
+        {/* <animated.mesh position-y={positioned}>
             <Blob/>
-        </animated.mesh>
+        </animated.mesh> */}
+
+        <Tendrils />
+        
         </>
+     
     );
 }

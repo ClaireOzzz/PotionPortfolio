@@ -1,0 +1,22 @@
+html, body {
+    font-family: Bely Display, sans-serif;
+    font-size: 10px;
+    height: 2000px;
+  }
+  
+  .logo-container {
+    position: fixed;
+    top: 30%;
+    left: 7%;
+    width: 500px;
+    height: 500px;
+    outline:7px solid black;
+  }
+  
+  path {
+    fill: transparent;
+  }
+  
+  text {
+    fill: black;
+  }
